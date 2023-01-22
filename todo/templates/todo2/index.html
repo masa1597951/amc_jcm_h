@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Dentista {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<ul>
+
+    <li><a href="{{ url_for('todo2_usu.create_usuario') }}">Dar alta Pacientes</a></li>
+    <li><a href="{{ url_for('todo2_usu.view_usuario') }}">Ver Pacientes</a></li>
+    <br>
+    <li><a href="{{ url_for('todo2_cit.view_citas') }}">Ver Citas</a></li>
+
+</ul>
+   
+{% endblock %}

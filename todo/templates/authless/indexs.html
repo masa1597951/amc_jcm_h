@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Consultorio Dental</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename= 'main3.css') }}"/>
+
+    </head>
+    <body>
+       <ul>
+            <li > <a href="{{ url_for('auth.login') }} ">Iniciar Sesión</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#about">Nosotros</a></li>
+            <li><a href="{{ url_for('chatbot.chatbot') }}">ChatBot</a></li>
+
+       </ul>
+
+       <div class="content" id="inicio">
+        <h1>Bienvenido</h1>
+        <br>
+        <img src="static/logo.png" >
+       </div>
+
+
+            <div class="content" id="about">
+                <h1> ¿Quienes Somos?</h1>
+                <a>Somos una clínica 100% mexicana.</a>
+                <a>Ofrecemos soluciones dentales odontológicas rápidas y eficaces para el cuidado de tu boca. </a>
+
+            </div>
+
+            <div class="content">
+                <h1>Nuestros Servicios</h1>
+            </div>
+       <section id="servicios">
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <div class="b">
+                    <a><b>Restauración Simple con Resina</b></a>
+                    <br>
+                    <a>Tratamiento realizado para lesiones causadas por caries, pequeñas fracturas que son restauradas con resina.</a>
+                </div>
+            </div>
+            <div class="grid-item">
+                <div class="b">
+                    <a><b>Brakets</b></a>
+                    <br>
+                    <a>Tratamiento dental para el mejoramiento de la sonrisa del paciente.</a>
+                </div>
+            </div>
+            <div class="grid-item"> 
+                <a><b>Éxodoncia simple</b></a>
+                <br>
+                <a>Procedimiento quirúrgico el cual se extrae un diente por algún daño.</a>
+            </div>
+            <div class="grid-item">
+                <a><b>Consulta General</b></a> 
+                <br>
+                <a>Consulta Rutinaria, para continuar con algun tratamiento.</a>
+            </div>
+          </div> 
+        
+       </section>
+
+    </body>
+
+</html>
+

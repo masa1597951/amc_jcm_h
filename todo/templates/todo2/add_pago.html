@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Registro de Pago {% endblock %}</h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+
+        <a><b>Total: </b></a>
+        <a>{{ pago['nu_total'] }}</a> 
+        <br>
+        <label for="abono">Abono:</label>
+        <input name="abono" id="abono" required />
+        <br><br>
+        <label for="fecha">Fecha: </label>
+        <input type="date" min="2022-11-01" max="2032-11-01" name="fecha" id="fecha" required />
+        <br><br>
+        <br><hr><br>
+        <input type="submit" value="Registrar Abono" />
+    </form>
+{% endblock %}

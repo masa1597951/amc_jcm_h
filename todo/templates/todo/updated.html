@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Editar Dentista {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+        
+    <label for="correo">Correo Electronico:</label>
+    <input name="correo" id="correo" value="{{ request.form['tx_correo'] or usuario['tx_correo'] }}" required />
+    <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" />
+    <br><br>
+    <label for="nombre">Nombre:</label>
+    <input name="nombre" id="nombre" value="{{ request.form['tx_nombre'] or usuario['tx_nombre'] }}" required />
+    <br><br>
+    <label for="ap">Apellido Paterno:</label>
+    <input name="ap" id="ap" value="{{ request.form['tx_paterno'] or usuario['tx_paterno'] }}" required />
+    <br><br>
+    <label for="am">Apellido Materno:</label>
+    <input name="am" id="am" value="{{ request.form['tx_materno'] or usuario['tx_materno'] }}" required />
+    <br><br>
+    <label for="telefono">Teléfono:</label>
+    <input name="telefono" id="telefono" value="{{ request.form['tx_telefono'] or usuario['tx_telefono'] }}" required />
+    <br><br>
+    <label for="sexo">Sexo:</label>
+    <input name="sexo" id="sexo" value="{{ request.form['tx_sexo'] or usuario['tx_sexo'] }}" required />
+    <br><br>
+    <label for="id_dentista">ID Dentista:</label>
+    <input name="id_dentista" id="id_dentista" value="{{ request.form['id_dentista'] or usuario['id_dentista'] }}" required />
+    <br><hr><br>
+    <input type="submit" value="Guardar" />
+</form>
+
+<br><hr><br>
+<form action="{{ url_for('todo_den.delete_usuario', id_usuario=usuario['id_usuario']) }}" method="post">
+    <input class="danger" type="submit" value="Eliminar" onclick="return confirm('Estas seguro que quieres eliminarlo?')" />
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Encuestas del Usuario {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% set i = 0 %}
+    {% for encuesta in encuestas %}
+          <li class="encuesta"> 
+            <div>
+                <a><b>{{ encuesta['fk_id_pregunta'] }}</b></a>
+                <a>{{ encuesta['tx_pregunta'] }}</a>
+                <br><br>
+                <a>{{ encuesta['nu_resp'] }} = </a>
+                <a>{{ val[i + 1] }}</a>
+                <br><br>
+            </div>
+          </li>
+    
+    {% if not loop.last %}
+    <hr>
+    {% endif %} 
+    {% endfor %}
+</ul>
+
+{% endblock %}

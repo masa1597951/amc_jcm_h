@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Paciente {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<ul>
+
+    <li><a href="{{ url_for('todo3_cita.create_cita') }}">Agendar una Cita</a></li>
+    <li><a href="{{ url_for('todo3_encuesta.view_encuesta') }}">Responder Encuesta</a></li>
+
+</ul>
+   
+{% endblock %}

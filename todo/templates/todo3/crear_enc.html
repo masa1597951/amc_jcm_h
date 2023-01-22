@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Encuesta{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    
+<form method="post">
+    
+    <ul>
+        {% for pregunta in preguntas %}
+        <li class="pregunta">
+            <div>
+                <a><b>Pregunta:</b></a>
+                <a>{{ pregunta['id_pregunta'] }}</a>
+                <a>{{ pregunta['tx_pregunta'] }}</a>
+                
+                <select name="p_{{ pregunta['id_pregunta'] }}" id="p_{{ pregunta['id_pregunta'] }}">
+                    <option value="0"></option>
+                    <option value="4">Muy bueno</option>
+                    <option value="3">Bueno</option>
+                    <option value="2">Regular</option>
+                    <option value="1">Malo</option>
+                </select>
+                <br>
+            </div>
+        </li>
+
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+    <hr><br>
+    
+    <input type="submit" value="Guardar" />
+
+</form>
+
+{% endblock %}

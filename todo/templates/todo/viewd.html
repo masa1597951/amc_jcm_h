@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Lista de Dentistas {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+<ul>
+{% for usuario in usuarios %}
+      <li class="usuario"> 
+        <div>
+            <a><b>Correo Electronico:</b></a>
+            <a>{{ usuario['tx_correo'] }}</a>
+            <br>
+            <a><b>Nombre:</b></a>
+            <a>{{ usuario['tx_nombre'] }}</a> 
+            <br>
+            <a><b>Apellido Paterno:</b></a>
+            <a>{{ usuario['tx_paterno'] }}</a> 
+            <br>
+            <a><b>Apellido Materno:</b></a>
+            <a>{{ usuario['tx_materno'] }}</a> 
+            <br>
+            <a><b>Telefono:</b></a>
+            <a>{{ usuario['tx_telefono'] }}</a> 
+            <br>
+            <a><b>Sexo:</b></a>
+            <a>{{ usuario['tx_sexo'] }}</a> 
+            <br>
+            <a><b>ID Dentista:</b></a>
+            <a>{{ usuario['id_dentista'] }}</a> 
+            <br>
+            <a class="action" href="{{ url_for('todo_den.update_dentista', id_usuario = usuario['id_usuario']) }}">Editar</a>
+        </div>
+      </li>
+
+{% if not loop.last %}
+<hr>
+{% endif %} 
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Editar Expediente {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+
+    <a><b>Descripcion: </b></a>
+    <br>
+    <a>{{ request.form['tx_desc'] or todo['tx_desc'] }}</a>
+    <br><br>
+    <a><b>Nueva Descripcion: </b></a>
+    <br>
+    <textarea name="desc" id="desc" rows="7" cols="50"  required></textarea>
+    <br><hr><br>
+    <input type="submit" value="Guardar" />
+
+</form>
+
+<br><hr><br>
+<form action="{{ url_for('todo_usu.delete_consulta', id_consulta=todo['id_consulta']) }}" method="post">
+    <input class="danger" type="submit" value="Eliminar" onclick="return confirm('Estas seguro que quieres eliminarlo?')" />
+</form>
+
+{% endblock %}

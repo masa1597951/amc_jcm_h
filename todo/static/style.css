@@ -1,0 +1,21 @@
+body {
+    background-color: azure;
+    margin: 0;
+    color: #034d6c;
+}
+a{
+    transition: color 0.3s ease;
+    font-family: 'Rubik', sans-serif;
+    text-decoration: none;
+    font-weight: 700;
+}
+a:hover{
+    color: blue;
+}
+
+html body header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 3px 0 5px #aaa;
+}

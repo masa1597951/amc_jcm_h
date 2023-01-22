@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Registro de Materiales{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        
+        <label for="nombre">Nombre:</label>
+        <input name="nombre" id="nombre" required />
+        <br><br>
+        <label for="cantidad">Cantidad:</label>
+        <input name="cantidad" id="cantidad" required />
+        <br><hr><br>
+        <input type="submit" value="Registrar material" />
+    </form>
+{% endblock %}

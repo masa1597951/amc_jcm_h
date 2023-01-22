@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Agendar Cita {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+        
+    <label for="fecha">Fecha: </label>
+    <input type="date" min="2022-11-01" max="2032-11-01" name="fecha" id="fecha" required />
+    <br><br>
+    <label for="hora">Hora:  </label>
+    <input type="time" name="hora" id="hora" required />
+    <br><hr><br>
+    <input type="submit" value="Agendar Cita" />
+
+</form>
+
+{% endblock %}

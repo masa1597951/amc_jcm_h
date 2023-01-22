@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Encuestas {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+<ul>
+{% for usuario in usuarios %}
+      <li class="usuario"> 
+        <div>
+            <a><b>Correo Electronico:</b></a>
+            <a>{{ usuario['tx_correo'] }}</a>
+            <br>
+            <a><b>Nombre:</b></a>
+            <a>{{ usuario['tx_nombre'] }}</a> 
+            <br>
+            <a><b>Apellido Paterno:</b></a>
+            <a>{{ usuario['tx_paterno'] }}</a> 
+            <br>
+            <a><b>Apellido Materno:</b></a>
+            <a>{{ usuario['tx_materno'] }}</a> 
+            <br>
+            <a><b>ID Dentista:</b></a>
+            <a>{{ usuario['id_dentista'] }}</a>
+            <br>
+            <a class="action" href="" >Ver Encuestas</a> 
+            <a class="action" href="" >Eliminar Encuestas</a> 
+            <br>
+          </div>
+      </li>
+
+{% if not loop.last %}
+<hr>
+{% endif %} 
+{% endfor %}
+</ul>
+
+{% endblock %}

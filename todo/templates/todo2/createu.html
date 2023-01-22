@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h1>{% block title %}Registro de Pacientes{% endblock %}</h1>
+{% endblock %}
+{% block content %}
+    <form method="post">
+        <label for="correo">Correo Electrónico:</label>
+        <input name="correo" id="correo" required />
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+        <br><br>
+        <label for="nombre">Nombre:</label>
+        <input name="nombre" id="nombre" required />
+        <br><br>
+        <label for="ap">Apellido Paterno:</label>
+        <input name="ap" id="ap" required />
+        <br><br>
+        <label for="am">Apellido Materno:</label>
+        <input name="am" id="am" required />
+        <br><br>
+        <label for="telefono">Teléfono:</label>
+        <input name="telefono" id="telefono" required />
+        <br><br>
+        <label for="sexo">Sexo:</label>
+        <input name="sexo" id="sexo" required />
+        <br><hr><br>
+        <input type="submit" value="Registrarse" />
+    </form>
+{% endblock %}

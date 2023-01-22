@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Paciente {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% for encuesta in encuestas %}
+          <li class="encuesta"> 
+            <div>
+                <a><b>Fecha:</b></a>
+                <a>{{ encuesta['fh_cita'] }}</a>
+                <br><br>
+                <a class="action" href="{{ url_for('todo3_encuesta.crear_encuesta', id_consulta = encuesta['fk_id_consulta']) }}">Responder Encuesta</a>
+            </div>
+          </li>
+    
+    {% if not loop.last %}
+    <hr>
+    {% endif %} 
+    {% endfor %}
+</ul>
+   
+{% endblock %}
