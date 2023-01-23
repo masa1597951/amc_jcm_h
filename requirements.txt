@@ -7,16 +7,12 @@ cffi==1.15.1
 chardet==4.0.0
 click==8.0.3
 colorama==0.4.4
-command-not-found==0.3
 cryptography==3.4.8
 cupshelpers==1.0
 dbus-python==1.2.18
 defer==1.0.6
 distro==1.7.0
 distro-info===1.1build1
-Django==4.1.5
-django-crispy-forms==1.14.0
-django-formtools==2.4
 duplicity==0.8.21
 fasteners==0.14.1
 Flask==2.2.2
