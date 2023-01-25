@@ -2,20 +2,24 @@
 <html>
     <head>
         <title>Consultorio Dental</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename= 'main3.css') }}"/>
+       <!-- <link rel="stylesheet" href="{{ url_for('static', filename= 'main3.css') }}"/> -->
+       <link rel="stylesheet" href="{{ url_for('css', filename= 'main.css') }}"/>
 
     </head>
     <body>
+        <div class="mx-4 my-4">
+            <h1 class="text-center">Consultorio Dental</h1>
+        </div>
        <ul>
-            <li > <a href="{{ url_for('auth.login') }} ">Iniciar Sesión</a></li>
+            <li> <a href="{{ url_for('auth.login') }} ">Iniciar Sesión</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#about">Nosotros</a></li>
             <li><a href="{{ url_for('chatbot.chatbot') }}">ChatBot</a></li>
 
        </ul>
 
-       <div class="content" id="inicio">
-        <h1>Bienvenido</h1>
+       <div class="container" id="inicio">
+        <h1 class="text-center">Bienvenido</h1>
         <br>
         <img src="static/logo.png" >
        </div>
