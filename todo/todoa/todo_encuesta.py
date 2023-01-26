@@ -1,5 +1,5 @@
 from flask import(
-    Blueprint, flash, g, render_template, request, url_for, redirect
+    Blueprint, flash, g, render_template, request, url_for, redirect, jsonify
 )
 from werkzeug.exceptions import abort #algun todo que no le pertenezca mandar un abort
 from werkzeug.security import generate_password_hash
@@ -12,14 +12,54 @@ bp = Blueprint('todo_encuesta', __name__)
 @bp.route('/view/encuesta/graficas')
 @login_required
 def view_enc_g():
-        
-    values = [1, 2, 3, 4, 5, 6, 7];
-    labels = ["A", "B", "C", "D", "E", "F", "G"];
-    colors = ["#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC"];
+
+    malo = 0
+    regular = 0
+    bueno = 0
+    mbueno = 0
+
+    maloc = 0
+    regularc = 0
+    buenoc = 0
+    mbuenoc = 0
+
+    db, c = get_db()
+    c.execute(
+        'select nu_resp from respuestas where fk_id_pregunta between 1 and 5'
+    )
+    encuestas = c.fetchall() 
+    
+    for encuesta in encuestas:
+                if encuesta['nu_resp'] == 1:
+                    malo = malo + 1 
+                if encuesta['nu_resp'] == 2:
+                    regular = regular + 1  
+                if encuesta['nu_resp'] == 3:
+                    bueno = bueno + 1
+                if encuesta['nu_resp'] == 4:
+                    mbueno = mbueno + 1
+
+    c.execute(
+        'select nu_resp from respuestas where fk_id_pregunta between 6 and 10'
+    )
+    encuestasc = c.fetchall() 
+    
+    for encuestac in encuestasc:
+                if encuestac['nu_resp'] == 1:
+                    maloc = maloc + 1 
+                if encuestac['nu_resp'] == 2:
+                    regularc = regularc + 1  
+                if encuestac['nu_resp'] == 3:
+                    buenoc = buenoc + 1
+                if encuestac['nu_resp'] == 4:
+                    mbuenoc = mbuenoc + 1
+
+    data = {'Task' : 'Satisfaccion', 'Malo' : malo, 'Regular' : regular, 'Bueno' : bueno, 'Muy Bueno' : mbueno}
+
+    datac = {'Task' : 'Satisfaccion', 'Malo' : maloc, 'Regular' : regularc, 'Bueno' : buenoc, 'Muy Bueno' : mbuenoc}
 
 
-
-    return render_template('todo/viewenc_g.html', title='Gráfica', max=17000, set=zip(values, labels, colors))
+    return render_template('todo/viewenc_g.html',data=data, datac=datac)
 
 
 @bp.route('/<id_usuario>/view/encuestas/individual')
