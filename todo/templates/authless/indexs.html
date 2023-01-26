@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Consultorio Dental</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <style>
-        .bg-success {
-          --bs-bg-opacity: 1;
-          background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
-        }
-      </style>
-    </head>
-    <body>
+  <head>
+    <title>Consultorio Dental</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{{ url_for('auth.login') }} "
+        >Iniciar Sesión</a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#servicios ">Servicios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#nosotros">Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('chatbot.chatbot') }}"
+              >Chat-Bot</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand text-white" href="{{ url_for('auth.login') }} ">Iniciar Sesión</a>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="#servicios ">Servicios</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="#nosotros">Nosotros</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url_for('chatbot.chatbot') }}">Chat-Bot</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-
-       <!-- <ul>
+    <!-- <ul>
             <li> <a href="{{ url_for('auth.login') }} ">Iniciar Sesión</a></li>
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#about">Nosotros</a></li>
@@ -42,55 +65,71 @@
 
        </ul> -->
 
-       <div class="container" id="inicio">
-        <h1>Bienvenidos</h1>
-        <br>
-        <img src="static/logo.png" >
-       </div>
+    <div class="container" id="inicio">
+      <div class="row">
+        <div class="col align-self-center">
+          <div class="text-center">
+            <h1>Bienvenidos</h1>
+            <img class="item-center" src="static/logo.png" />
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
 
-
-            <div id="about">
-                <h1> ¿Quienes Somos?</h1>
-                <a>Somos una clínica 100% mexicana.</a>
-                <a>Ofrecemos soluciones dentales odontológicas rápidas y eficaces para el cuidado de tu boca. </a>
-
-            </div>
-
-            <div id="servicios">
+    <div class="container" id="about">
+      <div class="row">
+        <div class="col align-self-center">
+          <div class="text-center">
+            <h1>¿Quienes Somos?</h1>
+            <a>Somos una clínica 100% mexicana.</a>
+            <a
+              >Ofrecemos soluciones dentales odontológicas rápidas y eficaces
+              para el cuidado de tu boca.
+            </a>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="container"  id="servicios">
+        <div class="row">
+          <div class="col align-self-center">
+            <div class="text-center">
                 <h1>Nuestros Servicios</h1>
+                <div class="grid-item">
+                    <div class="b">
+                      <a><b>Restauración Simple con Resina: </b></a>
+                      <a
+                        >Tratamiento realizado para lesiones causadas por caries, pequeñas
+                        fracturas que son restauradas con resina.</a
+                      >
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <div class="b">
+                      <a><b>Brakets: </b></a>
+                      <a
+                        >Tratamiento dental para el mejoramiento de la sonrisa del
+                        paciente.</a
+                      >
+                    </div>
+                  </div>
+                  <div class="grid-item">
+                    <a><b>Éxodoncia simple:</b></a>
+                    <a
+                      >Procedimiento quirúrgico el cual se extrae un diente por algún
+                      daño.</a
+                    >
+                  </div>
+                  <div class="grid-item">
+                    <a><b>Consulta General:</b></a>
+                    <a>Consulta Rutinaria, para continuar con algun tratamiento.</a>
+                  </div>
             </div>
-       <section id="servicios">
-
-        <div>
-            <div class="grid-item">
-                <div class="b">
-                    <a><b>Restauración Simple con Resina</b></a>
-                    <br>
-                    <a>Tratamiento realizado para lesiones causadas por caries, pequeñas fracturas que son restauradas con resina.</a>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="b">
-                    <a><b>Brakets</b></a>
-                    <br>
-                    <a>Tratamiento dental para el mejoramiento de la sonrisa del paciente.</a>
-                </div>
-            </div>
-            <div class="grid-item"> 
-                <a><b>Éxodoncia simple</b></a>
-                <br>
-                <a>Procedimiento quirúrgico el cual se extrae un diente por algún daño.</a>
-            </div>
-            <div class="grid-item">
-                <a><b>Consulta General</b></a> 
-                <br>
-                <a>Consulta Rutinaria, para continuar con algun tratamiento.</a>
-            </div>
-          </div> 
-        
-       </section>
-
-    </body>
-
+          </div>
+        </div>
+        <br />
+      </div>
+  </body>
 </html>
-
