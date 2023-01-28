@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Mi expediente {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+{% for consulta in consultas %}
+
+<li class="consulta">
+    <div>
+        <a><b>Tratamiento: </b></a>
+        <a>{{ consulta['tx_nombre'] }}</a>
+        <br>
+        <a><b>Total: </b></a>
+        <a>{{ consulta['nu_total'] }}</a>
+        <br>
+        <!-- <a class="action" href="{{ url_for('todo2_pago.view_pagos', id_pago = consulta['id_pago']) }}">Ver pagos</a> -->
+    </div>
+</li>
+
+{% if not loop.last %}
+<hr>
+{% endif %}
+{% endfor %}
+</ul>
+
+{% endblock %}

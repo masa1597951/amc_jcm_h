@@ -21,7 +21,7 @@ def create_app():
     from . import auth, chatbot
     from .todoa import todo, todo_mat, todo_den, todo_usu, todo_encuesta
     from .todod import todo2, todo2_usu, todo2_cit, todo2_cons, todo2_pago, todo2_encuesta
-    from .todou import todo3, todo3_cita, todo3_encuesta
+    from .todou import todo3, todo3_cita, todo3_encuesta, todo3_cons
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(chatbot.bp)
@@ -43,7 +43,7 @@ def create_app():
     app.register_blueprint(todo3.bp)
     app.register_blueprint(todo3_cita.bp)
     app.register_blueprint(todo3_encuesta.bp)
-
+    app.register_blueprint(todo3_cons.bp)
 
     @app.route('/')
     def hola():
