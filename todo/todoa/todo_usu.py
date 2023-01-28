@@ -111,6 +111,12 @@ def get_usuario(id_usuario):
 def update_usuario(id_usuario):
     usuario= get_usuario(id_usuario)
 
+    db, c = get_db()
+    c.execute(
+        'select id_usuario, tx_correo from usuarios where fk_id_rol = 2'
+    )
+    dentistas = c.fetchall()
+
     if request.method == 'POST':
 
          correo = request.form['correo']
@@ -120,7 +126,7 @@ def update_usuario(id_usuario):
          am = request.form['am']
          telefono = request.form['telefono']
          sexo = request.form['sexo']
-         id_dentista = request.form['id_dentista']
+         id_dentista = request.form.get('id_dentista')
 
          error = None 
          correct = "Exito al actualizar"
@@ -139,12 +145,15 @@ def update_usuario(id_usuario):
                 error = 'Sexo es requerido'
          if not id_dentista:
                 error = 'ID Dentista es requerido'
+         if id_dentista == "empty":
+                id_dentista = usuario['id_dentista']
          
          if  error is not None:
                 flash(error)
                 
          elif not password:
-               db, c = get_db()   
+               db, c = get_db()
+               c.execute('SET FOREIGN_KEY_CHECKS=0')    
                c.execute(
                         'update usuarios set tx_correo =%s, id_dentista =%s where id_usuario =%s',
                         (correo, id_dentista, id_usuario)
@@ -155,12 +164,14 @@ def update_usuario(id_usuario):
                         ' tx_telefono =%s, tx_sexo =%s where fk_id_usuario =%s',
                         (nombre, ap, am, telefono, sexo, id_usuario)
                 )
+               c.execute('SET FOREIGN_KEY_CHECKS=1') 
                db.commit()
            
                flash(correct)
                return redirect(url_for('todo.index'))
          else:     
-               db, c = get_db()     
+               db, c = get_db() 
+               c.execute('SET FOREIGN_KEY_CHECKS=0')     
                c.execute(
                         'update usuarios set tx_correo =%s , tx_password =%s , id_dentista =%s where id_usuario =%s',
                         (correo, generate_password_hash(password), id_dentista, id_usuario)
@@ -171,11 +182,12 @@ def update_usuario(id_usuario):
                         ' tx_telefono =%s, tx_sexo =%s where fk_id_usuario =%s',
                         (nombre, ap, am, telefono, sexo, id_usuario)
                 )
+               c.execute('SET FOREIGN_KEY_CHECKS=0') 
                db.commit()
                flash(correct)
                return redirect(url_for('todo.index'))
   
-    return render_template('todo/updateu.html', usuario=usuario)
+    return render_template('todo/updateu.html', usuario=usuario, dentistas=dentistas)
 
 def get_usuario(id_usuario):
      db, c = get_db()
@@ -282,3 +294,34 @@ def delete_consulta(id_consulta):
      db.commit()
      flash(correcto)
      return redirect(url_for('todo.index'))
+
+def get_pago(id_pago):
+     db, c = get_db()
+     c.execute(
+          'select * from pagos where id_pago = %s', 
+          (id_pago,)
+     )
+     pago = c.fetchone()
+
+     if pago is None:
+          abort(404, "El ID del pago {0} no existe ".format(id_pago))
+        
+     return pago
+
+@bp.route('/<int:id_pago>/view/pago', methods=['GET', 'POST'])
+@login_required
+def view_pagos(id_pago):
+    pago = get_pago(id_pago)
+
+    db, c = get_db()
+    c.execute(
+        'select a.nu_nabono, a.nu_monto, a.fh_abono, p.nu_total ' 
+        'from abono a JOIN pagos p on p.id_pago = a.fk_id_pago ' 
+        'where fk_id_pago = %s'
+        ,(id_pago,)
+    )
+    pagos = c.fetchall()
+
+
+
+    return render_template('todo/view_pago.html', pagos = pagos)

@@ -5,25 +5,25 @@
 {% block content %}
     <form method="post">
         <label for="correo">Correo Electrónico:</label>
-        <input name="correo" id="correo" required />
+        <input name="correo" id="correo" pattern="([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+" required />
         <br><br>
         <label for="password">Password:</label>
         <input type="password" name="password" id="password" required />
         <br><br>
         <label for="nombre">Nombre:</label>
-        <input name="nombre" id="nombre" required />
+        <input name="nombre" id="nombre" pattern="[a-zA-Z\s]{2,64}" required />
         <br><br>
         <label for="ap">Apellido Paterno:</label>
-        <input name="ap" id="ap" required />
+        <input name="ap" id="ap" pattern="[a-zA-Z\s]{2,64}" required />
         <br><br>
         <label for="am">Apellido Materno:</label>
-        <input name="am" id="am" required />
+        <input name="am" id="am" pattern="[a-zA-Z\s]{2,64}" required />
         <br><br>
         <label for="telefono">Teléfono:</label>
-        <input name="telefono" id="telefono" required />
+        <input type="tel" name="telefono" id="telefono" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required />
         <br><br>
         <label for="sexo">Sexo:</label>
-        <input name="sexo" id="sexo" required />
+        <input name="sexo" id="sexo" pattern="[a-zA-Z\s]{2,64}" required />
         <br><br>
         <label for="id_dentista">Dentista:</label>
         <select name="id_dentista" id="id_dentista">

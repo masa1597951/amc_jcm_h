@@ -35,7 +35,9 @@ def chatbot():
             val = r6
         if pregunta.find('Dientes') >= 0 or pregunta.find('dientes') >= 0:
             val = r7
-        
-            
-
     return render_template('authless/chat_bot.html',val = val)
+
+@bp.route('/')
+def init():
+    return render_template('authless/indexs.html')
+    

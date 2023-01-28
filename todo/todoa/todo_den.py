@@ -30,7 +30,6 @@ def create_dentista():
                 sexo = request.form['sexo']
                 id_dentista = request.form.get('id_dentista')
 
-               
                 c.execute(
                 'select id_usuario from usuarios where tx_correo = %s',(correo,)
                 )
@@ -107,6 +106,12 @@ def get_dentista(id_usuario):
 def update_dentista(id_usuario):
     usuario= get_dentista(id_usuario)
 
+    db, c = get_db()
+    c.execute(
+        'select id_usuario, tx_correo from usuarios where fk_id_rol = 2'
+    )
+    dentistas = c.fetchall()
+
     if request.method == 'POST':
 
          correo = request.form['correo']
@@ -116,7 +121,8 @@ def update_dentista(id_usuario):
          am = request.form['am']
          telefono = request.form['telefono']
          sexo = request.form['sexo']
-         id_dentista = request.form['id_dentista']
+         id_dentista = request.form.get('id_dentista')
+
 
          error = None 
          correct = "Exito al actualizar"
@@ -135,12 +141,15 @@ def update_dentista(id_usuario):
                 error = 'Sexo es requerido'
          if not id_dentista:
                 error = 'ID Dentista es requerido'
-         
+         if id_dentista == "empty":
+                id_dentista = usuario['id_dentista']
+
          if  error is not None:
                 flash(error)
                 
          elif not password:
-               db, c = get_db()   
+               db, c = get_db()
+               c.execute('SET FOREIGN_KEY_CHECKS=0')   
                c.execute(
                         'update usuarios set tx_correo =%s, id_dentista =%s where id_usuario =%s',
                         (correo, id_dentista, id_usuario)
@@ -151,12 +160,15 @@ def update_dentista(id_usuario):
                         ' tx_telefono =%s, tx_sexo =%s where fk_id_usuario =%s',
                         (nombre, ap, am, telefono, sexo, id_usuario)
                 )
+               c.execute('SET FOREIGN_KEY_CHECKS=1')
                db.commit()
+               
            
                flash(correct)
                return redirect(url_for('todo.index'))
-         else:     
-               db, c = get_db()     
+         else:      
+               db, c = get_db()
+               c.execute('SET FOREIGN_KEY_CHECKS=0')     
                c.execute(
                         'update usuarios set tx_correo =%s , tx_password =%s , id_dentista =%s where id_usuario =%s',
                         (correo, generate_password_hash(password), id_dentista, id_usuario)
@@ -167,11 +179,12 @@ def update_dentista(id_usuario):
                         ' tx_telefono =%s, tx_sexo =%s where fk_id_usuario =%s',
                         (nombre, ap, am, telefono, sexo, id_usuario)
                 )
+               c.execute('SET FOREIGN_KEY_CHECKS=1')
                db.commit()
                flash(correct)
                return redirect(url_for('todo.index'))
   
-    return render_template('todo/updated.html', usuario=usuario)
+    return render_template('todo/updated.html', usuario=usuario, dentistas=dentistas)
 
 @bp.route('/<int:id_usuario>/delete/dentista', methods=['POST'])
 @login_required

@@ -43,7 +43,8 @@ def create_app():
     app.register_blueprint(todo3.bp)
     app.register_blueprint(todo3_cita.bp)
     app.register_blueprint(todo3_encuesta.bp)
-    
+
+
     @app.route('/')
     def hola():
         return render_template('authless/indexs.html')

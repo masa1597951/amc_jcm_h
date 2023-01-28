@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %} Expediente de Pagos {% endblock %}</h1>    
+{% endblock %}
+
+{% block content %}
+
+<ul>
+{% for pago in pagos %}
+      <li class="pago"> 
+        <div>
+            <a><b> Sumatoria Total:</b></a>
+            <a>{{ pago['nu_total'] }}</a>
+            <br>
+            <a><b>Numero de abono: </b></a>
+            <a>{{ pago['nu_nabono'] }}</a> 
+            <br>
+            <a><b>Monto: </b></a>
+            <a>{{ pago['nu_monto'] }}</a> 
+            <br>
+            <a><b>Fecha: </b></a>
+            <a>{{ pago['fh_abono'] }}</a> 
+            <br>
+        </div>
+      </li>
+
+{% if not loop.last %}
+<hr>
+{% endif %} 
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -25,6 +25,8 @@ def get_pago(id_pago):
 @login_required
 def add_pago(id_pago):
     usuario = get_pago(id_pago)
+    nu_nabono = None
+    op = None
 
     db, c = get_db()
     c.execute(
@@ -41,10 +43,11 @@ def add_pago(id_pago):
                 correcto = 'Pago Realizado Correctamente '
                 
                 if not fecha:
-                         error = 'Fecha es requerida'
+                    error = 'Fecha es requerida'
                 if not abono:
-                        error = 'Abono requerido'
-
+                    error = 'Abono requerido'
+                if pago['nu_total'] < int(abono):
+                    error = 'El abono supera la cantidad del total'
                 if error is None:
                         c.execute(
                            'select max(nu_nabono) as num from abono where fk_id_pago = %s ',
@@ -52,19 +55,33 @@ def add_pago(id_pago):
                         )
                         nu_nabono = c.fetchone()
                         
-                        if nu_nabono is None:
+                        if nu_nabono['num'] is None:
                             num = 1 #numero del abono
                         else:
                             num = sum(nu_nabono.values()) + 1
 
-                        c.execute(
-                        'insert into abono (fk_id_pago, fk_id_paciente, nu_nabono, nu_monto, fh_abono) '
-                        'values (%s, %s, %s, %s, %s)',
-                        (id_pago, pago['fk_id_paciente'], num ,abono, fecha)
-                        )
-                        db.commit()
-                        flash(correcto)
-                        return redirect(url_for('todo2.index'))
+                            c.execute(
+                                'select p.nu_total - sum(a.nu_monto) as val  from abono a'
+                                ' JOIN pagos p on a.fk_id_pago = p.id_pago' 
+                                ' where a.fk_id_pago = %s',
+                                (id_pago,)
+                            )
+                            op = c.fetchone()    
+
+                            if op['val'] == 0:
+                                error = "No se puede agregar otro abono,se ha saldado la cuenta por completo"
+                                flash(error)
+                                return redirect(url_for('todo2.index'))
+                        
+                        if error is None:
+                            c.execute(
+                                'insert into abono (fk_id_pago, fk_id_paciente, nu_nabono, nu_monto, fh_abono) '
+                                'values (%s, %s, %s, %s, %s)',
+                                (id_pago, pago['fk_id_paciente'], num ,abono, fecha)
+                            )
+                            db.commit()
+                            flash(correcto)
+                            return redirect(url_for('todo2.index'))
                 
 
                 flash(error)

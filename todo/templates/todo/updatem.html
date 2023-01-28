@@ -9,10 +9,10 @@
 <form method="post">
         
     <label for="nombre">Nombre:</label>
-    <input name="nombre" id="nombre" value="{{ request.form['tx_nombre'] or todo['tx_nombre'] }}" required />
+    <input name="nombre" id="nombre" value="{{ request.form['tx_nombre'] or todo['tx_nombre'] }}" pattern="[a-zA-Z\s]{2,64}" required />
     <br><br>
     <label for="cantidad">Cantidad:</label>
-    <input name="cantidad" id="cantidad" value="{{ request.form['nu_cantidad'] or todo['nu_cantidad'] }}" required />
+    <input type="number" name="cantidad" id="cantidad" value="{{ request.form['nu_cantidad'] or todo['nu_cantidad'] }}" required />
     <br><hr><br>
     <input type="submit" value="Guardar" />
 </form>

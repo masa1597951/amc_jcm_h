@@ -22,9 +22,11 @@ def create_material():
                 'select tx_nombre from materiales where tx_nombre = %s',(nombre,)
                 )
                 if not nombre:
-                        error = 'Username es requerido'
+                        error = 'El nombre es requerido'
                 if not cantidad:
-                        error = 'Password es requerido'
+                        error = 'La cantidad es requerida'
+                if not cantidad.isnumeric():
+                        error = 'Debe de ser un número'
 
                 elif c.fetchone() is not None:
                         error = 'Material {} se encuentra registrado.'.format(nombre)
@@ -72,19 +74,22 @@ def update_material(id_material):
                error = "El nombre del material es requerido"
           if not cantidad:
                error = "La cantidad del material es requerida"
-
-          if  error is not None:
-              flash(error) 
-          else:
+          if not cantidad.isnumeric():
+                error = 'Debe de ser un número'
+              
+          if error is None:
                db, c = get_db()
                c.execute(
                     'update materiales set tx_nombre = %s, nu_cantidad = %s where id_material= %s',
                     (nombre, cantidad, id_material)
                )
                db.commit()
-          flash(correct)
-               
-          return redirect(url_for('todo.index'))   
+               flash(correct)
+
+               return redirect(url_for('todo.index')) 
+
+          flash(error) 
+  
     
     return render_template('todo/updatem.html', todo=todo)
 

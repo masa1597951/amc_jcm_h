@@ -9,28 +9,36 @@
 <form method="post">
         
     <label for="correo">Correo Electronico:</label>
-    <input name="correo" id="correo" value="{{ request.form['tx_correo'] or usuario['tx_correo'] }}" required />
+    <input name="correo" id="correo" value="{{ request.form['tx_correo'] or usuario['tx_correo'] }}" pattern="([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+" required />
     <br><br>
     <label for="password">Password:</label>
     <input type="password" name="password" id="password" />
     <br><br>
     <label for="nombre">Nombre:</label>
-    <input name="nombre" id="nombre" value="{{ request.form['tx_nombre'] or usuario['tx_nombre'] }}" required />
+    <input name="nombre" id="nombre" value="{{ request.form['tx_nombre'] or usuario['tx_nombre'] }}" pattern="[a-zA-Z\s]{2,64}" required />
     <br><br>
     <label for="ap">Apellido Paterno:</label>
-    <input name="ap" id="ap" value="{{ request.form['tx_paterno'] or usuario['tx_paterno'] }}" required />
+    <input name="ap" id="ap" value="{{ request.form['tx_paterno'] or usuario['tx_paterno'] }}" pattern="[a-zA-Z\s]{2,64}" required />
     <br><br>
     <label for="am">Apellido Materno:</label>
-    <input name="am" id="am" value="{{ request.form['tx_materno'] or usuario['tx_materno'] }}" required />
+    <input name="am" id="am" value="{{ request.form['tx_materno'] or usuario['tx_materno'] }}" pattern="[a-zA-Z\s]{2,64}" required />
     <br><br>
     <label for="telefono">Teléfono:</label>
-    <input name="telefono" id="telefono" value="{{ request.form['tx_telefono'] or usuario['tx_telefono'] }}" required />
+    <input type="tel" name="telefono" id="telefono" value="{{ request.form['tx_telefono'] or usuario['tx_telefono'] }}" placeholder="XXXXXXXXXX" pattern="[0-9]{10}" required />
     <br><br>
     <label for="sexo">Sexo:</label>
-    <input name="sexo" id="sexo" value="{{ request.form['tx_sexo'] or usuario['tx_sexo'] }}" required />
+    <input name="sexo" id="sexo" value="{{ request.form['tx_sexo'] or usuario['tx_sexo'] }}" pattern="[a-zA-Z\s]{2,64}" required />
     <br><br>
-    <label for="id_dentista">ID Dentista:</label>
-    <input name="id_dentista" id="id_dentista" value="{{ request.form['id_dentista'] or usuario['id_dentista'] }}" required />
+    <label for="d_nuevo">Dentista nuevo:</label>
+        <select name="id_dentista" id="id_dentista">
+            <option value="empty"></option>
+            {% for dentisa in dentistas %}
+            <option value="{{ dentisa['id_usuario'] }}">{{ dentisa['tx_correo'] }}</option>
+            {% if not loop.last %}
+            {% endif %}
+            {% endfor %}
+          </select>
+    
     <br><hr><br>
     <input type="submit" value="Guardar" />
 </form>

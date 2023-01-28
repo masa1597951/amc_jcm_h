@@ -29,6 +29,7 @@
           <a>{{ consulta['nu_total'] }}</a> 
           <br>
           <a class="action" href="{{ url_for('todo_usu.update_consulta', id_consulta = consulta['id_consulta']) }}">Editar</a>
+          <a class="action" href="{{ url_for('todo_usu.view_pagos', id_pago = consulta['id_pago']) }}">Ver pagos</a>
         </div>
       </li>
 
