@@ -1,30 +1,113 @@
 {% extends 'base.html' %}
 {% block header %}
-    <h1>{% block title %}Registro{% endblock %}</h1>
 {% endblock %}
 {% block content %}
-    <form method="post">
-        <label for="correo">Correo Electrónico:</label>
-        <input name="correo" id="correo" required />
-        <br><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" required />
-        <br><br>
-        <label for="nombre">Nombre:</label>
-        <input name="nombre" id="nombre" required />
-        <br><br>
-        <label for="ap">Apellido Paterno:</label>
-        <input name="ap" id="ap" required />
-        <br><br>
-        <label for="am">Apellido Materno:</label>
-        <input name="am" id="am" required />
-        <br><br>
-        <label for="telefono">Teléfono:</label>
-        <input name="telefono" id="telefono" required />
-        <br><br>
-        <label for="sexo">Sexo:</label>
-        <input name="sexo" id="sexo" required />
-        <br><hr><br>
-        <input type="submit" value="Registrarse" />
-    </form>
+
+<form method="post">
+    <section class="vh-100" style="background-color: #eee;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-12 col-xl-11">
+                    <div class="card text-black" style="border-radius: 25px;">
+                        <div class="card-body p-md-5">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registrate</p>
+
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="nombre"> <i
+                                                class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        </label>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="nombre" name="nombre" class="form-control"
+                                                placeholder="Nombre" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="ap"> <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        </label>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="ap" name="ap" class="form-control"
+                                                placeholder="Apellido paterno" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="am"> <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                        </label>
+
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="am" name="am" class="form-control"
+                                                placeholder="Apellido materno" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="telefono"> <i
+                                                class="fas fa-phone fa-lg me-3 fa-fw"></i>
+                                        </label>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="text" id="telefono" name="telefono" class="form-control"
+                                                placeholder="Teléfono" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="telefono"> <i
+                                                class="fa-solid fa-venus-mars fa-lg me-3"></i>
+                                        </label>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexo" id="Gender"
+                                                value="Femenino" checked />
+                                            <label class="form-check-label" for="femaleGender">Femenino</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexo" id="Gender"
+                                                value="Masculino" />
+                                            <label class="form-check-label" for="maleGender">Masculino</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexo" id="Gender"
+                                                value="Otro" />
+                                            <label class="form-check-label" for="maleGender">Otro</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="correo"> <i
+                                                class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                        </label>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="email" id="correo" name="correo" class="form-control"
+                                                placeholder="Email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex flex-row align-items-center mb-4">
+                                        <label class="form-label" for="password"> <i
+                                                class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                        </label>
+                                        <div class="form-outline flex-fill mb-0">
+                                            <input type="password" id="password" name="password" class="form-control"
+                                                placeholder="Contraseña" />
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                        <button type="submit" class="btn btn-primary btn-lg">Registrar</button>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                                    <img src="https://clinicamaip.com/wp-content/uploads/2020/02/patron-dentistas-utensilios.jpg"
+                                        class="img-fluid" alt="Sample image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</form>
 {% endblock %}

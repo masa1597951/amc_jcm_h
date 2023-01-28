@@ -1,24 +1,116 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %} Administrador {% endblock %}</h1>    
+<h1 class="text-center p-5 m-5">{% block title %} Bienvenido {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
-<ul>
 
-    <li><a href="{{ url_for('todo_usu.create_usuario') }}">Dar alta Usuarios</a></li>
-    <li><a href="{{ url_for('todo_usu.view_usuario') }}">Editar Usuarios</a></li>
-    <br><br>
-    <li><a href="{{ url_for('todo_den.create_dentista') }}">Dar alta Dentistas</a></li>
-    <li><a href="{{ url_for('todo_den.view_dentista') }}">Editar Dentistas</a></li>
-    <br><br>
-    <li><a href="{{ url_for('todo_mat.create_material') }}">Dar alta Materiales</a></li>
-    <li><a href="{{ url_for('todo_mat.view_material') }}">Editar Materiales</a></li>
-    <br><br>
-    <li><a href="{{ url_for('todo_encuesta.view_enc_g') }}">Mostrar Encuestas de Manera Gráfica</a></li>
 
-</ul>
-   
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_usu.create_usuario') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-user-plus fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Dar alta Usuarios </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_usu.view_usuario') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-user-pen fa-2xl"></i></p>
+                        <p class="user-select-none h3 col">
+                            Editar Usuarios
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_den.create_dentista') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-user-doctor fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Dar alta Dentistas </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_den.view_dentista') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-user-doctor fa-2xl"></i></p>
+                        <p class="user-select-none h3 col">
+                            Editar Dentistas
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_mat.view_material') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-tooth fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Dar alta Materiales </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_usu.view_usuario') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-tooth fa-2xl"></i></p>
+                        <p class="user-select-none h3 col">
+                            Editar Materiales
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo_encuesta.view_enc_g') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-chart-pie fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Mostrar Encuestas de Manera Gráfica </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
