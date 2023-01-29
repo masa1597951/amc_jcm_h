@@ -6,13 +6,54 @@
 
 {% block content %}
 
-<ul>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo2_usu.create_usuario') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-calendar-days fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Dar alta Pacientes
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo2_usu.view_usuario') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-calendar-days fa-2xl"></i></p>
+                        <p class="user-select-none h3 col">
+                            Ver Pacientes
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
-    <li><a href="{{ url_for('todo2_usu.create_usuario') }}">Dar alta Pacientes</a></li>
-    <li><a href="{{ url_for('todo2_usu.view_usuario') }}">Ver Pacientes</a></li>
-    <br>
-    <li><a href="{{ url_for('todo2_cit.view_citas') }}">Ver Citas</a></li>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo2_cit.view_citas') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-chart-pie fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Ver Citas
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
-</ul>
+
    
 {% endblock %}

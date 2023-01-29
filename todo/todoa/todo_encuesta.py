@@ -1,8 +1,6 @@
 from flask import(
     Blueprint, flash, g, render_template, request, url_for, redirect, jsonify
 )
-from werkzeug.exceptions import abort #algun todo que no le pertenezca mandar un abort
-from werkzeug.security import generate_password_hash
 from todo.auth import login_required #http para redireccionar si no tiene permiso
 from todo.db import get_db
 
@@ -83,7 +81,7 @@ def view_enc_ind_sp(fk_id_consulta):
         db, c = get_db()
         c.execute(
         'select r.fk_id_consulta, r.nu_resp, r.fk_id_pregunta, p.tx_pregunta from respuestas r '
-        'JOIN preguntas p on p.id_pregunta = r.fk_id_pregunta where fk_id_consulta= %s ',
+        'JOIN preguntas p on p.id_pregunta = r.fk_id_pregunta where r.fk_id_consulta= %s ',
         (fk_id_consulta,)
         )
         encuestas = c.fetchall() 
@@ -100,4 +98,18 @@ def view_enc_ind_sp(fk_id_consulta):
                 if encuesta['nu_resp'] == 4:
                     val.append("muy bueno")
 
-        return render_template('todo/viewenc_ind_sp.html', encuestas = encuestas, val = val)
+        return render_template('todo/viewenc_ind_sp.html', encuestas = encuestas, val = val, fk_id_consulta = fk_id_consulta)
+
+@bp.route('/<int:fk_id_consulta>/delete/encuesta', methods=['POST'])
+@login_required
+def delete_encuesta(fk_id_consulta):
+     
+     correcto = 'Exito al eliminar los datos de la encuesta'
+     db, c =get_db()
+     c.execute('SET FOREIGN_KEY_CHECKS=0')
+     c.execute('delete from respuestas where fk_id_consulta = %s',(fk_id_consulta,))
+     c.execute('update encuesta set val=%s where fk_id_consulta= %s',(0,fk_id_consulta))
+     c.execute('SET FOREIGN_KEY_CHECKS=1')
+     db.commit()
+     flash(correcto)
+     return redirect(url_for('todo.index'))

@@ -1,17 +1,57 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<h1>{% block title %} Paciente {% endblock %}</h1>    
+<h1 class="text-center p-5 m-5">{% block title %} Bienvenido {% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
 
-<ul>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo3_cita.create_cita') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-calendar-days fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Agendar una Cita
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo3_encuesta.view_encuesta') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-calendar-days fa-2xl"></i></p>
+                        <p class="user-select-none h3 col">
+                            Responder Encuesta
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
 
-    <li><a href="{{ url_for('todo3_cita.create_cita') }}">Agendar una Cita</a></li>
-    <li><a href="{{ url_for('todo3_encuesta.view_encuesta') }}">Responder Encuesta</a></li>
-    <li><a href="{{ url_for('todo3_cons.view_expediente') }}">Ver expediente</a></li>
+<div class="container mt-5 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <a class="text-decoration-none text-secondary" href="{{ url_for('todo3_cons.view_expediente') }}"
+                aria-disabled="true">
+                <div class="card p-3 mb-2 hover-zoom">
+                    <div class="text-center">
+                        <p><i class="fa-solid fa-chart-pie fa-2xl"></i></p>
+                        <p class="user-select-none h3">
+                            Ver expediente
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
-</ul>
-   
 {% endblock %}

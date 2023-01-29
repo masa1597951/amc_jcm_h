@@ -26,4 +26,9 @@
     {% endfor %}
 </ul>
 
+<br><hr><br>
+<form action="{{ url_for('todo_encuesta.delete_encuesta', fk_id_consulta= fk_id_consulta) }}" method="post">
+    <input class="danger" type="submit" value="Eliminar" onclick="return confirm('Estas seguro que quieres eliminarlo?')" />
+</form>
+
 {% endblock %}
