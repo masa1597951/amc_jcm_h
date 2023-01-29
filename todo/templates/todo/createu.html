@@ -3,6 +3,7 @@
     <h1>{% block title %}Registro de Pacientes{% endblock %}</h1>
 {% endblock %}
 {% block content %}
+
     <form method="post">
         <label for="correo">Correo Electrónico:</label>
         <input name="correo" id="correo" pattern="([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+" required />
