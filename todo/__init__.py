@@ -18,13 +18,14 @@ def create_app():
 
     db.init_app(app)
 
-    from . import auth, chatbot
+    from . import auth, chatbot, index
     from .todoa import todo, todo_mat, todo_den, todo_usu, todo_encuesta
     from .todod import todo2, todo2_usu, todo2_cit, todo2_cons, todo2_pago, todo2_encuesta
     from .todou import todo3, todo3_cita, todo3_encuesta, todo3_cons
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(chatbot.bp)
+    app.register_blueprint(index.bp)
 
     app.register_blueprint(todo.bp)
     app.register_blueprint(todo_mat.bp)

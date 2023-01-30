@@ -16,8 +16,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
             {% if g.user %}
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item"><p class="text-light bg-dark">{{ g.user['tx_correo'] }}</p></li>
+            <ul class="nav navbar-nav navbar-right" style="padding-left: 75%">
+                <li class="nav-item"><a style="padding-top: 9px" class="action" href="{{ url_for('index.index', correo = g.user['id_usuario']) }}">{{ g.user['tx_correo'] }}</a></li>
                 <li> <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar Sesión</a></li>
             </ul>
             {% else %}
